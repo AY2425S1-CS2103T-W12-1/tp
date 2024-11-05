@@ -50,7 +50,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-* 
+
 * Items together in curly square brackets means one and only one of them must be given as input.<br>
   e.g `{n/NAME t/TAG}` can be used as `n/John Doe` or as `t/friends`.
 
@@ -142,7 +142,7 @@ Renames an existing tag in the address book.
 Format: `renameTag ot/OLDTAG nt/NEWTAG`
 
 * Renames the tags called `OLDTAG` to `NEWTAG`.
-* Contacts with the tag `OLDTAG` will now have `NEWTAG`, with `OLDTAG` removed
+* Contacts with the tag `OLDTAG` will now have `NEWTAG`, with `OLDTAG` removed.
 * If `OLDTAG` is not an existing tag, `[OLDTAG] tag is not found` will be returned.
 * If there are any contacts with both `[OLDTAG]` and `[NEWTAG]`, the `[OLDTAG]` will not be renamed as this will lead to duplicated tags.
 
@@ -173,12 +173,12 @@ Finds persons whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-insensitive. e.g `hans` will match `Hans`.
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* Only full words will be matched e.g. `Han` will not match `Hans`.
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
 Examples:
 * `find John` returns `john` and `John Doe`
@@ -193,7 +193,7 @@ Format: `filter [t/TAG]...`
 
 * The filter is case-sensitive.
 * Filters for users whose tags contains all the input tags.
-* The tag provided must only contain alphanumeric characters
+* The tag provided must only contain alphanumeric characters.
 * If the provided tag(s) does not match any contact, an empty list will be shown.
 
 Examples:
@@ -214,6 +214,7 @@ Format: `delete INDEX`
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 0000
+
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
@@ -234,7 +235,7 @@ Examples:
 
 ### Sort persons by name: `sort`
 
-Sorts and displays the list of persons by schedule or name alphabetically in either ascending or descending order
+Sorts and displays the list of persons by schedule or name alphabetically in either ascending or descending order.
 
 Format: `sort {n/[ORDER], sch/[ORDER]}`
 
@@ -248,15 +249,15 @@ Format: `sort {n/[ORDER], sch/[ORDER]}`
   2. Contacts with a date but no time as schedule will be sorted under the assumption that their time is 00:00.
 
 Examples:
-* `sort n/` will sort by persons names alphabetically in ascending order
-* `sort sch/` will sort by schedule in ascending order
-* `sort n/ascending` will sort by persons names alphabetically in ascending order
+* `sort n/` will sort by persons names alphabetically in ascending order.
+* `sort sch/` will sort by schedule in ascending order.
+* `sort n/ascending` will sort by persons names alphabetically in ascending order.
   ![result for 'sort and sort ascending'](images/sortResult.png)
-* `sort n/descending` will sort by persons names alphabetically in descending order
+* `sort n/descending` will sort by persons names alphabetically in descending order.
   ![result for 'sort descending'](images/sortDescendingResult.png)
-* `sort sch/ascending` will sort by schedule in ascending order
+* `sort sch/ascending` will sort by schedule in ascending order.
   ![result for 'sort and sort ascending'](images/sortByScheduleAsc.png)
-* `sort sch/descending` will sort by schedule in descending order
+* `sort sch/descending` will sort by schedule in descending order.
   ![result for 'sort descending'](images/sortByScheduleDesc.png)
 
 ### Search persons by schedule range: `search`
@@ -265,19 +266,19 @@ Searches for a list of persons within a given range of schedule
 
 Format: `search [b/START_TIME] [en/END_TIME]`
 
-* `START_TIME` and `END_TIME` must adhere to the datetime format yyyy-MM-dd HH:mm
-* Either `[b/START_TIME]` or `[en/END_TIME]` has to be provided
-* It will search for schedules between the given `[b/START_TIME]` and `[en/END_TIME]`
-* If `[b/START_TIME]` is not provided, it will search for all schedules that is before `[en/END_TIME]`
-* If `[en/END_TIME]` is not provided, it will search for all schedules that is after `[b/START_TIME]`
-* Persons with no schedule given will not appear in the search results
-* Persons with only a date as a schedule but not time will be searched under the assumption that time is 00:00
-* Search result will be inclusive of the begin and end time
+* `START_TIME` and `END_TIME` must adhere to the datetime format yyyy-MM-dd HH:mm.
+* Either `[b/START_TIME]` or `[en/END_TIME]` has to be provided.
+* It will search for schedules between the given `[b/START_TIME]` and `[en/END_TIME]`.
+* If `[b/START_TIME]` is not provided, it will search for all schedules that is before `[en/END_TIME]`.
+* If `[en/END_TIME]` is not provided, it will search for all schedules that is after `[b/START_TIME]`.
+* Persons with no schedule given will not appear in the search results.
+* Persons with only a date as a schedule but not time will be searched under the assumption that time is 00:00.
+* Search result will be inclusive of the begin and end time.
 
 Examples:
-* `search b/2024-11-11 12:00` will search for the list of persons with schedules after 2024-11-11 12:00
-* `search en/2024-11-12 12:00` will search for the list of persons with schedules before 2024-11-12 12:00
-* `search b/2024-11-11 12:00 en/2024-11-12 12:00` will search for the list of persons with schedules between 2024-11-11 12:00 and 2024-11-12 12:00
+* `search b/2024-11-11 12:00` will search for the list of persons with schedules after 2024-11-11 12:00.
+* `search en/2024-11-12 12:00` will search for the list of persons with schedules before 2024-11-12 12:00.
+* `search b/2024-11-11 12:00 en/2024-11-12 12:00` will search for the list of persons with schedules between 2024-11-11 12:00 and 2024-11-12 12:00.
   ![result for 'search b/2024-11-11 12:00 en/2024-11-12 12:00'](images/searchCommandSuccess.png)
 
 ### Backing up save file : `backup`
